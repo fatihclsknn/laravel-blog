@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\CategoryController;
+use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\HomePageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+ * Front Routes
+ */
+Route::get('/',[HomePageController::class,'index'])->name('front.homePage');
+Route::get('/about',[AboutController::class, 'index'])->name('front.about');
+Route::get('/contact',[ContactController::class,'index'])->name('front.contact');
+Route::get('/category/{slug}',[CategoryController::class,'index'])->name('front.category');
