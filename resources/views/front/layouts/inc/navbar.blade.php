@@ -4,7 +4,7 @@
 
         <div class="s-header__logo">
             <a class="logo" href="{{ route('front.homePage') }}">
-                <img src="{{ asset('front/images/logodeneme.png') }}" alt="ANA SAYFA">
+                <img src="{{ asset('front/images/logo.svg') }}" alt="ANA SAYFA">
             </a>
         </div>
 
