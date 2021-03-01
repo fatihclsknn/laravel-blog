@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
+use Database\Seeders\ArticleSeeder;
 use Illuminate\Http\Request;
 
 class HomePageController extends Controller
 {
     public function index()
     {
-        return view('front.homePage');
+        $articles =Article::all();
+        return view('front.homePage',compact('articles'));
     }
 }

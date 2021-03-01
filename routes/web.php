@@ -4,6 +4,7 @@ use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\CategoryController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\HomePageController;
+use App\Http\Controllers\Front\SinglePostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,4 @@ Route::get('/',[HomePageController::class,'index'])->name('front.homePage');
 Route::get('/about',[AboutController::class, 'index'])->name('front.about');
 Route::get('/contact',[ContactController::class,'index'])->name('front.contact');
 Route::get('/category/{slug}',[CategoryController::class,'index'])->name('front.category');
+Route::get('blog/{slug}',[SinglePostController::class,'index'])->name('front.singlePost');
