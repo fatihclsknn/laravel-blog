@@ -21,7 +21,9 @@ class ArticleSeeder extends Seeder
             $article =Article::create([
                 'title'=>Str::title($title),
                 'slug'=>Str::slug($title),
-                'content'=>$faker->paragraph('4'),
+                'content'=>$faker->paragraph('10'),
+                'category_id'=>rand(1,5),
+                'author'=>$faker->userName,
             ]);
 
 

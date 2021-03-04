@@ -2,7 +2,6 @@
 @section('title','Ana Sayfa')
 @section('content')
     <section class="s-bricks">
-
         <div class="masonry">
             <div class="bricks-wrapper h-group">
 
@@ -95,8 +94,8 @@
 
                             <div class="entry__meta">
                                 <span class="entry__cat-links">
-                                    <a href="#">Design</a>
-                                    <a href="#">Photography</a>
+                                    <a href="#">{{ $article->getCategory->title }}</a>
+
                                 </span>
                             </div>
 
@@ -107,6 +106,7 @@
                             <p>{{ Str::limit($article->content,'250') }}
                             </p>
                         </div>
+
                     </div> <!-- end entry__text -->
 
                 </article> <!-- end entry -->
