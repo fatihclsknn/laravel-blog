@@ -11,7 +11,7 @@
                     <div class="entry__content">
 
                         <div class="featured-post-slider">
-
+                         @foreach($news as $new)
                             <div class="featured-post-slide">
                                 <div class="f-slide">
 
@@ -20,52 +20,16 @@
 
                                     <div class="f-slide__content">
                                         <ul class="f-slide__meta">
-                                            <li>September 06, 2020</li>
-                                            <li><a href="#" >Naruto Uzumaki</a></li>
+                                            <li>{{ \Carbon\Carbon::parse($new->created_at)->format('j F, Y') }}</li>
+                                            <li><a href="#" >{{ $new->	author }}</a></li>
                                         </ul>
 
-                                        <h1 class="f-slide__title"><a href="single-standard.html" title="">A Practical Guide to a Minimalist Lifestyle.</a></h1>
+                                        <h1 class="f-slide__title"><a href="{{ route('front.singlePost',$new->slug) }}" title="">{{ $new->title }}</a></h1>
                                     </div>
 
                                 </div> <!-- f-slide -->
                             </div> <!-- featured-post-slide -->
-
-                            <div class="featured-post-slide">
-                                <div class="f-slide">
-
-                                    <div class="f-slide__background" style="background-image:url('front/images/thumbs/featured/featured-2.jpg');"></div>
-                                    <div class="f-slide__overlay"></div>
-
-                                    <div class="f-slide__content">
-                                        <ul class="f-slide__meta">
-                                            <li>September 06, 2020</li>
-                                            <li><a href="#" >Sakura Haruno</a></li>
-                                        </ul>
-
-                                        <h1 class="f-slide__title"><a href="single-standard.html" title="">Enhancing Your Designs with Negative Space</a></h1>
-                                    </div>
-
-                                </div> <!-- f-slide -->
-                            </div> <!-- featured-post-slide -->
-
-                            <div class="featured-post-slide">
-                                <div class="f-slide">
-
-                                    <div class="f-slide__background" style="background-image:url('front/images/thumbs/featured/featured-3.jpg');"></div>
-                                    <div class="f-slide__overlay"></div>
-
-                                    <div class="f-slide__content">
-                                        <ul class="f-slide__meta">
-                                            <li>September 05, 2020</li>
-                                            <li><a href="#" >Shikamaru Nara</a></li>
-                                        </ul>
-
-                                        <h1 class="f-slide__title"><a href="single-standard.html" title="">Music Album Cover Designs for Inspiration</a></h1>
-                                    </div>
-
-                                </div> <!-- f-slide -->
-                            </div> <!-- featured-post-slide -->
-
+                            @endforeach
                         </div> <!-- end feature post slider -->
 
                         <div class="featured-post-nav">
@@ -110,6 +74,7 @@
                     </div> <!-- end entry__text -->
 
                 </article> <!-- end entry -->
+
                 @endforeach
 
             </div> <!-- end brick-wrapper -->

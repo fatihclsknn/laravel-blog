@@ -13,7 +13,9 @@ class HomePageController extends Controller
     public function index()
     {
         $articles= Article::all();
+        $news=Article::query()->orderBy('created_at','DESC')->take(3)->get();
 
-        return view('front.homePage',compact('articles'));
+
+        return view('front.homePage',compact('articles','news'));
     }
 }
