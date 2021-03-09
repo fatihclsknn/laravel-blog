@@ -11,10 +11,7 @@
                 <section>
 
                     <div class="s-content__media">
-                        <img src="front/images/thumbs/contact/contact-1050.jpg"
-                             srcset="front/images/thumbs/contact/contact-2100.jpg 2100w,
-                                     front/images/thumbs/contact/contact-1050.jpg 1050w,
-                                     front/images/thumbs/contact/contact-525.jpg 525w" sizes="(max-width: 2100px) 100vw, 2100px" alt="">
+                        <img src="{{ asset('front/images/thumbs/contact/iletisim.png') }}" alt="">
                     </div> <!-- end s-content__media -->
 
                     <div class="s-content__primary">
@@ -47,7 +44,9 @@
                             </div>
                         </div> <!-- end s-content__blocks -->
 
-                        <form name="cForm" id="cForm" class="s-content__form" method="post" action="">
+                        <form name="cForm" id="cForm" class="s-content__form" method="POST" action="">
+
+                            @csrf
                             <fieldset>
 
                                 <div class="form-field">
@@ -59,7 +58,7 @@
                                 </div>
 
                                 <div class="form-field">
-                                    <input name="cWebsite" type="text" id="cWebsite" class="h-full-width" placeholder="Website"  value="">
+                                    <input name="subject" type="text" id="cWebsite" class="h-full-width" placeholder="Subject"  value="">
                                 </div>
 
                                 <div class="message form-field">
