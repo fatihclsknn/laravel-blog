@@ -7,7 +7,9 @@
     <section class="s-pageheader">
         <div class="row current-cat">
             <div class="column">
-                <h1 class="h2">Category: Lifestyle</h1>
+                <h1 class="h2">{{ $category->title }}
+
+                </h1>
             </div>
         </div>
     </section>
