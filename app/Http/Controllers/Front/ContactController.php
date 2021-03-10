@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Contact\AdminInfoMail;
+use App\Mail\Contact\UserInfoMail;
 use App\Mail\ContactMail\Admin;
 use App\Models\Contact;
 use http\Message;
@@ -31,6 +33,11 @@ class ContactController extends Controller
               'subject'=>$request->subject,
               'message'=>$request->cMessage,
           ]);
+
+          Mail::to($request->cEmail)->send(new AdminInfoMail($contact));
+          Mail::to($request->cEmail)->send(new UserInfoMail($contact));
+
+
           return  redirect()->route('front.homePage');
       }
         return view('front.contact');
