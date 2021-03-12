@@ -31,7 +31,7 @@
                     <select name="category" class="form-control">
                         <option value="" >Secim Yapınız</option>
                         @foreach($categories as $category)
-                            <option  selected="{{ $category->id }}">{{ $category->title }}</option>
+                            <option  value="{{ $category->id }}" >{{ $category->title }}</option>
                         @endforeach
                     </select>
                 </div>

@@ -30,7 +30,7 @@
                         </ul>
 
                         <p class="lead">
-                            {{ html_entity_decode($articles->content=ENT_QUOTES) }}
+                            {!!$articles->content !!}
                             </p>
 
                         </p>

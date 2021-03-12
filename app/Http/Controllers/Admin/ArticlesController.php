@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use function React\Promise\all;
 
 class ArticlesController extends Controller
 {
@@ -119,7 +120,17 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-      return  42;
+
+      $article = Article::findOrFail($id);
+      $article->title=$request->title;
+        $article->slug=$request->slug;
+        $article->category_id=$request->category;
+        $article->author=$request->author;
+        $article->content=$request->contents;
+        $article->save();
+        return redirect()->route('article.index');
+
+
 
     }
     /**
@@ -130,6 +141,9 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $article = Article::findOrFail($id);
+        $article->delete();
+        return redirect()->route('article.index');
     }
 }
