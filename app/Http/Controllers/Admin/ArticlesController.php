@@ -75,13 +75,12 @@ class ArticlesController extends Controller
             'slug'=>Str::slug($request->slug),
             'category_id'=>$request->category,
             'content'=>$request->contents,
-            'image' => 'uploads/products/' . $fileName,
+            'image' => 'uploads/article/'. $fileName,
             'author'=>$request->author
 
 
         ]);
 
-        toastr()->success('Başarılı', 'Makele Başarıyla Oluşturuldu');
       return redirect()->route('article.index');
     }
 
@@ -103,8 +102,12 @@ class ArticlesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+
     {
-        //
+        $articles=Article::findOrFail($id);
+        $categories= Category::all();
+
+        return  view('admin.articles.update',compact('categories','articles'));
     }
 
     /**
@@ -116,9 +119,9 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+      return  42;
 
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -67,7 +67,7 @@
 
                         </div>
                         <div class="entry__excerpt">
-                            <p>{{ Str::limit($article->content,'250') }}
+                            <p>{{  Str::limit($article->content,'250') }}
                             </p>
                         </div>
 

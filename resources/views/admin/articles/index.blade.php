@@ -13,11 +13,13 @@
                     <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Resim</th>
                         <th>Başlık</th>
                         <th>Kategori</th>
                         <th>Yazar</th>
-                        <th>Okunma Sayısı</th>
-                        <th>Oluşturma Tarihi</th>
+                        <th>Durum</th>
+                        <th>Hit</th>
+                        <th>Tarih</th>
                         <th>İşlemler</th>
                     </tr>
                     </thead>
@@ -25,15 +27,19 @@
                     @foreach($articles as $article)
                     <tr>
                         <td>{{ $article->id }}</td>
+                        <td>
+                            <img src="../{{ $article->image }}" alt="" width="90">
+                        </td>
                         <td>{{ $article->title }}</td>
                         <td>{{ $article->getCategory->title }}</td>
                         <td>{{ $article->author }}</td>
+                        <td>{!! $article->status==0 ? "<span class='text-danger'>Pasif </span>" : "<span class='text-success'>   Aktif </span>" !!}</td>
                         <td>{{ $article->hit }}</td>
                         <td>{{ \Carbon\Carbon::parse($article->created_at)->format('j F, Y') }}</td>
-                        <td>
-                            <a href="#"  class="btn btn-outline-success"><i class="fa fa-eye"></i></a>
-                            <a href="#"  class="btn btn-outline-secondary"><i class="fa fa-edit"></i></a>
-                            <a href="#" class="btn btn-outline-danger"><i class="fa fa-times"></i></a>
+                        <td >
+                            <a href="#" class="btn btn-outline-success form-control mb-1"><i class="fa fa-eye"></i></a>
+                            <a href="{{ route('article.edit',$article->id) }}"   class="btn btn-outline-secondary form-control mb-1"><i class="fa fa-edit"></i></a>
+                            <a href="#" class="btn btn-outline-danger form-control"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                     @endforeach

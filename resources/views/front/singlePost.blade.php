@@ -10,10 +10,10 @@
 
                     <div class="s-content__media">
                         <div class="s-content__post-thumb">
-                            <img src="{{ asset('front/images/thumbs/single/standard/standard-1050.jpg') }}"
-                                 srcset="{{ asset('front/images/thumbs/single/standard/standard-2100.jpg') }} 2100w,
-                                         {{ asset('front/images/thumbs/single/standard/standard-1050.jpg') }} 1050w,
-                                         {{ asset('front/images/thumbs/single/standard/standard-525.jpg') }} 525w" sizes="(max-width: 2100px) 100vw, 2100px" alt="">
+                            <img src="../{{ $articles->image }}"
+                                 srcset="../{{ $articles->image }} 2100w,
+                                         ../{{ $articles->image }} 1050w,
+                                         ../{{ $articles->image }} 525w" sizes="(max-width: 2100px) 100vw, 2100px" alt="">
                         </div>
                     </div> <!-- end s-content__media -->
 
@@ -30,7 +30,7 @@
                         </ul>
 
                         <p class="lead">
-                            {{ $articles->content }}
+                            {{ html_entity_decode($articles->content=ENT_QUOTES) }}
                             </p>
 
                         </p>

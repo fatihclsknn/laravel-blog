@@ -22,6 +22,7 @@ class CreateArticlesTable extends Migration
             $table->string('author',50);
             $table->integer('hit')->default(0);
             $table->string('image','100')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
 
             $table->foreign('category_id')

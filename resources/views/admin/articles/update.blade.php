@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title','Yazı Olustur')
+@section('title','Yazı Güncelle')
 @section('content')
 
 
@@ -15,40 +15,42 @@
                     @endforeach
                 </div>
             @endif
-            <form action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data" ">
+            <form action="{{ route('article.update',$articles->id) }}" method="POST" enctype="multipart/form-data" >
+                @method('PUT')
                 @csrf
                 <div class="form-group">
                     <label for="">Yazı Başlığı(örnek:Messi Fenerbahçede)</label>
-                    <input type="text" class="form-control" name="title">
+                    <input type="text" class="form-control" name="title" value="{{ $articles->title }}">
                 </div>
                 <div class="form-group">
                     <label for="">Slug(Örnek:messi-fenerbahçede)</label>
-                    <input type="text" class="form-control" name="slug">
+                    <input type="text" class="form-control" name="slug" value="{{ $articles->slug }}">
                 </div>
                 <div class="form-group">
                     <label >Kategori</label>
                     <select name="category" class="form-control">
-                        <option value="">Secim Yapınız</option>
+                        <option value="" >Secim Yapınız</option>
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                            <option  selected="{{ $category->id }}">{{ $category->title }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="">Makale Fotoğrafı</label>
+
                     <input type="file" name="image" class="form-control">
                 </div>
             <div class="form-group">
                 <label for="">Yazar</label>
-                <input type="text" name="author" value="Fatih"  class="form-control">
+                <input type="text" name="author" value="{{ $articles->author }}"  class="form-control" >
             </div>
                 <div class="form-group">
                     <label for="">Makale İçeriği</label>
-                    <textarea  id="summernote" class="form-control" rows="4" name="contents"></textarea>
+                    <textarea   id="summernote" class="form-control" rows="4" name="contents" >{!! $articles->content !!}</textarea>
                 </div>
 
                 <div class="form-group">
-                     <button class="form-control btn btn-outline-primary">Makaleyi Olustur.</button>
+                     <button class="form-control btn btn-outline-primary">Yazıyı Güncellle</button>
                 </div>
             </form>
         </div>
