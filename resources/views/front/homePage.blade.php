@@ -48,8 +48,7 @@
 
                     <div class="entry__thumb">
                         <a href="{{ route('front.singlePost',$article->slug) }}" class="thumb-link">
-                            <img src="front/images/thumbs/masonry/a.jpg"
-                                 srcset="front/images/thumbs/masonry/a.jpg 1x, front/images/thumbs/masonry/a.   jpg 2x" alt="">
+                            <img src="{{ $article->image }}" alt="">
                         </a>
                     </div> <!-- end entry__thumb -->
 
@@ -58,7 +57,7 @@
 
                             <div class="entry__meta">
                                 <span class="entry__cat-links">
-                                    <a href="#">{{ $article->getCategory->title }}</a>
+                                    <a href="{{ route('front.category',$article->getCategory->slug) }}">{{ $article->getCategory->title }}</a>
 
                                 </span>
                             </div>
@@ -70,8 +69,11 @@
                             <p>{!! Str::limit($article->content,'250') !!}
                             </p>
                         </div>
-
+                        <div class="form-group">
+                            <a href="{{ route('front.singlePost',$article->slug) }}" class="form-control">Devamını Oku...</a>
+                        </div>
                     </div> <!-- end entry__text -->
+
 
                 </article> <!-- end entry -->
 

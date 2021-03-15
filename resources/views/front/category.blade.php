@@ -7,12 +7,14 @@
     <section class="s-pageheader">
         <div class="row current-cat">
             <div class="column">
-                <h1 class="h2">{{ $category->title }}
+                <h1 class="h2">
+                    {{$category->title}} ({{$articles->count()}})
 
                 </h1>
             </div>
         </div>
     </section>
+
     <section class="s-bricks with-top-sep">
 
         <div class="masonry">
@@ -22,13 +24,12 @@
 
                 <div class="grid-sizer"></div>
 
-
+                @foreach($articles as $article)
                 <article class="brick entry format-standard animate-this">
 
                     <div class="entry__thumb">
-                        <a href="single-standard.html" class="thumb-link">
-                            <img src="{{ asset('front/images/thumbs/masonry/tulips-600.jpg') }}"
-                                 srcset="{{ asset('front/images/thumbs/masonry/tulips-600.jpg') }} 1x, {{ asset('front/images/thumbs/masonry/tulips-1200.jpg') }} 2x" alt="">
+                        <a href="{{ route('front.singlePost',$article->slug) }}" class="thumb-link">
+                            <img src="{{ $article->image }}"alt="">
                         </a>
                     </div>  <!-- end entry__thumb -->
 
@@ -36,22 +37,26 @@
                         <div class="entry__header">
 
                             <div class="entry__meta">
-                                <span class="entry__cat-links">
-                                    <a href="#">Health</a>
+                                <span class="entry__cat-links" >
+                                    <a href="{{ route('front.category',$category->slug) }}"> {{$category->title}}</a>
                                 </span>
                             </div>
 
-                            <h1 class="entry__title"><a href="single-standard.html">10 Interesting Facts About Caffeine.</a></h1>
+                            <h1 class="entry__title"><a href="{{ route('front.singlePost',$article->slug) }}">{{ $article->title }}</a></h1>
 
                         </div>
                         <div class="entry__excerpt">
                             <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua cillum in consequat consequat in culpa in anim.
+                                {!! Str::limit($article->content,'250') !!}
                             </p>
                         </div>
+                      <div class="form-group">
+                          <a href="{{ route('front.singlePost',$article->slug) }}" class="form-control">Devamını Oku...</a>
+                      </div>
                     </div> <!-- end entry__text -->
 
                 </article> <!-- end article -->
+                @endforeach
 
 
 
@@ -61,7 +66,6 @@
 
 
     </section> <!-- end s-bricks -->
-
 
 
 

@@ -17,11 +17,10 @@
                 <li class="has-children">
                     <a href="#" title="">Kategoriler</a>
                     <ul class="sub-menu">
-                        <li><a href="#">Yasam</a></li>
-                        <li><a href="category.html">Futbol</a></li>
-                        <li><a href="category.html">Gezi</a></li>
-                        <li><a href="category.html">Bilisim</a></li>
-                        <li><a href="category.html">Yemek</a></li>
+                        @foreach($categories as $category)
+                        <li><a href="{{ route('front.category',$category->slug)}}">{{ $category->title }}</a></li>
+                        @endforeach
+
                     </ul>
                 </li>
 

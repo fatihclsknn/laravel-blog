@@ -14,8 +14,8 @@ class HomePageController extends Controller
     {
         $articles= Article::all();
         $news=Article::query()->orderBy('created_at','DESC')->take(3)->get();
+        $categories=Category::all();
 
-
-        return view('front.homePage',compact('articles','news'));
+        return view('front.homePage',compact('articles','news','categories'));
     }
 }

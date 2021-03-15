@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\Contact\AdminInfoMail;
 use App\Mail\Contact\UserInfoMail;
 use App\Mail\ContactMail\Admin;
+use App\Models\Category;
 use App\Models\Contact;
 use http\Message;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class ContactController extends Controller
 {
     public function index(Request $request)
     {
-
+        $categories=Category::all();
 
       if($request->isMethod('post')){
 
@@ -40,7 +41,7 @@ class ContactController extends Controller
 
           return  redirect()->route('front.homePage');
       }
-        return view('front.contact');
+        return view('front.contact',compact('categories'));
     }
 
 
