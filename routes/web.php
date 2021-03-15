@@ -7,6 +7,8 @@ use App\Http\Controllers\Front\CategoryController;
 use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\HomePageController;
 use App\Http\Controllers\Front\SinglePostController;
+
+use App\Http\Controllers\Admin\CategoryController as adminCategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,5 +35,6 @@ Route::get('blog/{slug}',[SinglePostController::class,'index'])->name('front.sin
 Route::prefix('admin')->group(function (){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
     Route::resource('/article',ArticlesController::class);
+    Route::resource('/category',adminCategory::class);
 
 });

@@ -37,7 +37,7 @@
                         <td>{{ $article->hit }}</td>
                         <td>{{ \Carbon\Carbon::parse($article->created_at)->format('j F, Y') }}</td>
                         <td >
-                            <a href="#" class="btn btn-outline-success form-control mb-1"><i class="fa fa-eye"></i></a>
+                            <a href="{{ route('front.singlePost',$article->slug) }}" class="btn btn-outline-success form-control mb-1"><i class="fa fa-eye"></i></a>
                             <a href="{{ route('article.edit',$article->id) }}"   class="btn btn-outline-secondary form-control mb-1"><i class="fa fa-edit"></i></a>
                             <form action="{{ route('article.destroy',$article->id) }}" method="POST">
                                 @csrf
