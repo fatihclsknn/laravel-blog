@@ -36,5 +36,6 @@ Route::prefix('admin')->group(function (){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
     Route::resource('/article',ArticlesController::class);
     Route::resource('/category',adminCategory::class);
+    Route::get('/status',[ArticlesController::class,'status'])->name('admin.article.status');
 
 });

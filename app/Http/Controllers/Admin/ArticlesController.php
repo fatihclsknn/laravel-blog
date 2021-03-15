@@ -133,6 +133,13 @@ class ArticlesController extends Controller
 
 
     }
+
+    public function status(Request $request)
+    {
+       $article = Article::findOrFail($request->id);
+       $article->status=$request->statu ==  "true" ? 1 : 0;
+       $article->save();
+    }
     /**
      * Remove the specified resource from storage.
      *

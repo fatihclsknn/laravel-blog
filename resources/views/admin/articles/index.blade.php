@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('title','Tüm Yazılar')
+
 @section('content')
 
 
@@ -33,7 +34,10 @@
                         <td>{{ $article->title }}</td>
                         <td>{{ $article->getCategory->title }}</td>
                         <td>{{ $article->author }}</td>
-                        <td>{!! $article->status==0 ? "<span class='text-danger'>Pasif </span>" : "<span class='text-success'>   Aktif </span>" !!}</td>
+                        <td>
+                            <input class="switch"  article-id="{{ $article->id }}" type="checkbox" data-on="Aktif" data-off="Pasif"  data-offstyle="danger" data-onstyle="success" @if($article->status==1) checked @endif data-toggle="toggle">
+
+                        </td>
                         <td>{{ $article->hit }}</td>
                         <td>{{ \Carbon\Carbon::parse($article->created_at)->format('j F, Y') }}</td>
                         <td >
@@ -56,10 +60,22 @@
             </div>
         </div>
     </div>
+@endsection
+@section('css')
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+@endsection
+@section('js')
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+@endsection
+@section('js')
+    <script>
+        $(function (){
+            $('.switch').change(function (){
+                id= $(this)[0].getAttribute('article-id');
+                statu=$(this).prop('checked');
+                $.get("{{ route('admin.article.status') }}",{ id:id,statu:statu},function (data,status){});
+            })
 
-
-
-
-
-
+        })
+    </script>
 @endsection
