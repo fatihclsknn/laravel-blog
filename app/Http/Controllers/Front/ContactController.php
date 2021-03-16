@@ -38,8 +38,8 @@ class ContactController extends Controller
           Mail::to($request->cEmail)->send(new AdminInfoMail($contact));
           Mail::to($request->cEmail)->send(new UserInfoMail($contact));
 
-
-          return  redirect()->route('front.homePage');
+          toastr()->success('Mailiniz bize ulaştı!', 'Teşekkürler');
+          return  redirect()->route('front.contact');
       }
         return view('front.contact',compact('categories'));
     }

@@ -50,6 +50,7 @@
                                <th>ID</th>
                                <th>Kategori</th>
                                <th>Slug</th>
+                               <th>Durum</th>
                                <th>İslemler</th>
                            </tr>
                            </thead>
@@ -59,6 +60,11 @@
                                    <td>{{ $category->id }}</td>
                                    <td>{{ $category->title }}</td>
                                    <td>{{ $category->slug }}</td>
+                                   <td>
+
+                                       <input class="switch"  category-id="{{ $category->id }}" type="checkbox" data-on="Aktif" data-off="Pasif"  data-offstyle="danger" data-onstyle="success" @if($category->status==1) checked @endif data-toggle="toggle">
+
+                                   </td>
                                    <td >
                                        <a href="#" class="btn btn-outline-success form-control mb-1"><i class="fa fa-eye"></i></a>
                                        <a href="{{ route('category.edit',$category->id) }}"   class="btn btn-outline-secondary form-control mb-1"><i class="fa fa-edit"></i></a>
@@ -75,6 +81,10 @@
                            </tbody>
 
                        </table>
+                       <div class="form-group float-right">
+                           {{ $categories->links() }}
+                       </div>
+
 
                    </div>
                </div>
@@ -82,12 +92,20 @@
 
 
        </div>
+@endsection
+       @section('css')
+           <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"
+       @endsection
+       @section('js')
+           <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+           <script>
+               $(function (){
+                   $('.switch').change(function (){
+                       id= $(this)[0].getAttribute('category-id');
+                       statu=$(this).prop('checked');
+                       $.get("{{ route('admin.category.status') }}",{ id:id,statu:statu},function (data,status){});
+                   })
 
-
-
-
-
-
-
-
+               })
+           </script>
 @endsection

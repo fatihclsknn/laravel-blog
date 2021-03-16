@@ -42,7 +42,7 @@
                                 </span>
                             </div>
 
-                            <h1 class="entry__title"><a href="{{ route('front.singlePost',$article->slug) }}">{{ $article->title }}</a></h1>
+                            <h1 class="entry__title"><a href="{{ route('front.singlePost',$article->slug) }}">{{ Str::limit( $article->title ,'10')}}</a></h1>
 
                         </div>
                         <div class="entry__excerpt">

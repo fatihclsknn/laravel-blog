@@ -1,5 +1,6 @@
 @extends('front.layouts.master')
 @section('title','İletisim')
+
 @section('content')
 
     <!-- content

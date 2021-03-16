@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::simplePaginate(5);
         return view('admin.category.index',compact('categories'));
     }
 
@@ -48,7 +48,9 @@ class CategoryController extends Controller
             'title'=>$request->title,
             'slug'=>Str::slug($request->slug),
         ]);
+        toastr()->info('KATEGORİ BAŞARIYLA EKLENDİ!', 'Başarılı');
         return redirect()->route('category.index');
+
     }
 
     /**
@@ -92,8 +94,21 @@ class CategoryController extends Controller
         $category->title=$request->title;
         $category->slug=Str::slug($request->slug);
         $category->save();
+        toastr()->info('KATEGORİ BAŞARIYLA GÜNCELLENDİ!', 'Başarılı');
+
         return redirect()->route('category.index');
+
     }
+
+    public function status(Request $request)
+    {
+        $category = Category::findOrFail($request->id);
+        $category->status=$request->statu =="true" ? 1 : 0;
+        $category->save();
+    }
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -105,6 +120,8 @@ class CategoryController extends Controller
     {
         $category =Category::findOrFail($id);
         $category->delete();
-       return redirect()->route('category.index');
+        toastr()->info('KATEGORİ BAŞARIYLA SİLİNDİ!', 'Başarılı');
+
+        return redirect()->route('category.index');
     }
 }

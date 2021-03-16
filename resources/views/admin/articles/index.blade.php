@@ -56,6 +56,9 @@
                     </tbody>
 
                 </table>
+                <div class="form-group float-right">
+                    {{ $articles->links() }}
+                </div>
 
             </div>
         </div>
@@ -65,7 +68,7 @@
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 @endsection
 @section('js')
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></scri
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script>
         $(function (){
             $('.switch').change(function (){
