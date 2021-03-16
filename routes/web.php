@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticlesController;
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\CategoryController;
@@ -32,10 +33,15 @@ Route::get('blog/{slug}',[SinglePostController::class,'index'])->name('front.sin
 /*
  * Admin Routes
  */
+;
 Route::prefix('admin')->group(function (){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
     Route::resource('/article',ArticlesController::class);
     Route::resource('/category',adminCategory::class);
     Route::get('/status',[ArticlesController::class,'status'])->name('admin.article.status');
+    Route::get('/statuscategory',[adminCategory::class,'status'])->name('admin.category.status');
+    Route::match(['post','get'],'/login',[AuthController::class,'login'])->name('admin.login');
+    Route::match(['post','get'],'/register',[AuthController::class,'register'])->name('admin.register');
+
 
 });

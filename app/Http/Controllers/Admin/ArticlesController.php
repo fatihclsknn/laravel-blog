@@ -18,7 +18,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles=Article::all();
+        $articles=Article::simplePaginate(5);
         return view('admin.articles.index',compact('articles'));
     }
 
@@ -81,6 +81,7 @@ class ArticlesController extends Controller
 
 
         ]);
+        toastr()->info('YAZI BAŞARIYLA OLUSTURULDU!', 'Başarılı');
 
       return redirect()->route('article.index');
     }
@@ -128,6 +129,7 @@ class ArticlesController extends Controller
         $article->author=$request->author;
         $article->content=$request->contents;
         $article->save();
+        toastr()->info('YAZI BAŞARIYLA GÜNCELLENDİ!', 'Başarılı');
         return redirect()->route('article.index');
 
 
@@ -152,6 +154,7 @@ class ArticlesController extends Controller
 
         $article = Article::findOrFail($id);
         $article->delete();
+        toastr()->info('YAZİ BAŞARIYLA SİLİNDİ!', 'Başarılı');
         return redirect()->route('article.index');
     }
 }
