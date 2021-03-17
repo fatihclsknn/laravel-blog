@@ -29,15 +29,18 @@
                 <div class="form-group">
                     <label >Kategori</label>
                     <select name="category" class="form-control">
-                        <option value="" >Secim Yapınız</option>
+                        <option value="{{ $articles->getCategory->id  }}">{{ $articles->getCategory->title }}</option>
                         @foreach($categories as $category)
                             <option  value="{{ $category->id }}" >{{ $category->title }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="">Makale Fotoğrafı</label>
 
+                    <br>
+                    <img src="{{ asset($articles->image) }}" alt="" width="250">
+                    <br>
+                    <label for="">Makale Fotoğrafı</label>
                     <input type="file" name="image" class="form-control">
                 </div>
             <div class="form-group">

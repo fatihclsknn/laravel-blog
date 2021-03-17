@@ -8,6 +8,7 @@ use App\Mail\Contact\UserInfoMail;
 use App\Mail\ContactMail\Admin;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\ContactPage;
 use http\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -17,7 +18,8 @@ class ContactController extends Controller
     public function index(Request $request)
     {
         $categories=Category::all();
-
+        $categories=Category::all();
+        $contact =ContactPage::whereStatus(1)->firstOrFail();
       if($request->isMethod('post')){
 
            $request->validate([
@@ -41,7 +43,7 @@ class ContactController extends Controller
           toastr()->success('Mailiniz bize ulaştı!', 'Teşekkürler');
           return  redirect()->route('front.contact');
       }
-        return view('front.contact',compact('categories'));
+        return view('front.contact',compact('categories','contact'));
     }
 
 

@@ -48,7 +48,7 @@
 
                     <div class="entry__thumb">
                         <a href="{{ route('front.singlePost',$article->slug) }}" class="thumb-link">
-                            <img src="{{ $article->image }}" alt="">
+                            <img src="../{{ $article->image }}" alt="">
                         </a>
                     </div> <!-- end entry__thumb -->
 

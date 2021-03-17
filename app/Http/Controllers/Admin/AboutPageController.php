@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
-use App\Models\Category;
+use App\Models\About;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use function React\Promise\all;
 
-class ArticlesController extends Controller
+class AboutPageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +16,8 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles=Article::simplePaginate(5);
-        return view('admin.articles.index',compact('articles'));
+        $abouts = About::all();
+        return  view('admin.about.index',compact('abouts'));
     }
 
     /**
@@ -29,8 +27,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-       $categories= Category::all();
-        return  view('admin.articles.create',compact('categories'));
+        return view('admin.about.index');
     }
 
     /**
@@ -40,11 +37,10 @@ class ArticlesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
     {
         $request->validate([
-            'title' => 'required|min:5|max:100',
-            'slug' => 'required|unique:articles,slug',
+            'title' => 'required|min:3|max:20',
+            'slug' => 'required|min:3|max:20',
 
         ]);
 
@@ -66,24 +62,20 @@ class ArticlesController extends Controller
 
             if ($image->isValid()) {
                 // $image->move('uploads/products', $fileName);
-                $image->move(public_path('uploads/article'), $fileName);
+                $image->move(public_path('uploads/about'), $fileName);
             }
 
         }
 
-        $article=Article::create([
+        $about=About::create([
             'title'=>Str::title($request->title),
             'slug'=>Str::slug($request->slug),
-            'category_id'=>$request->category,
             'content'=>$request->contents,
-            'image' => 'uploads/article/'. $fileName,
-            'author'=>$request->author
-
-
+            'image' => 'uploads/about/'. $fileName,
         ]);
         toastr()->info('YAZI BAŞARIYLA OLUSTURULDU!', 'Başarılı');
 
-      return redirect()->route('article.index');
+        return redirect()->route('aboutpage.index');
     }
 
     /**
@@ -104,12 +96,10 @@ class ArticlesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-
     {
-        $articles=Article::findOrFail($id);
-        $categories= Category::all();
+        $about=About::findOrFail($id);
+        return  view('admin.about.update',compact('about'));
 
-        return  view('admin.articles.update',compact('categories','articles'));
     }
 
     /**
@@ -121,13 +111,17 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|min:3|max:20',
+            'slug' => 'required|min:3|max:20',
+            'contents' =>'required|string',
 
-      $article = Article::findOrFail($id);
-      $article->title=$request->title;
-        $article->slug=$request->slug;
-        $article->category_id=$request->category;
-        $article->author=$request->author;
-        $article->content=$request->contents;
+        ]);
+
+        $about = About::findOrFail($id);
+        $about->title=$request->title;
+        $about->slug=Str::slug($request->slug);
+        $about->content=$request->contents;
 
         if (request()->hasFile('image')) {
 
@@ -146,39 +140,44 @@ class ArticlesController extends Controller
 
             if ($image->isValid()) {
                 // $image->move('uploads/products', $fileName);
-                $image->move(public_path('uploads/article'), $fileName);
+                $image->move(public_path('uploads/about'), $fileName);
             }
-            $article->image='uploads/article/'.$fileName;
+            $about->image='uploads/about/'.$fileName;
 
         }
 
-        $article->save();
-        toastr()->info('YAZI BAŞARIYLA GÜNCELLENDİ!', 'Başarılı');
-        return redirect()->route('article.index');
-
-
+        $about->save();
+        toastr()->info('SAYFA BAŞARIYLA GÜNCELLENDİ!', 'Başarılı');
+        return redirect()->route('aboutpage.index');
 
     }
+
+
 
     public function status(Request $request)
     {
 
-       $article = Article::findOrFail($request->id);
-       $article->status=$request->statu =="true" ? 1 : 0;
-       $article->save();
+        $about = About::findOrFail($request->id);
+        $about->status=$request->statu =="true" ? 1 : 0;
+        $about->save();
     }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+
+
+
     public function destroy($id)
     {
-
-        $article = Article::findOrFail($id);
-        $article->delete();
+        $about = About::findOrFail($id);
+        $about->delete();
         toastr()->info('YAZİ BAŞARIYLA SİLİNDİ!', 'Başarılı');
-        return redirect()->route('article.index');
+        return redirect()->route('aboutpage.index');
     }
 }

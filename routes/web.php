@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutPageController;
 use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\ContactPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\CategoryController;
@@ -42,6 +44,9 @@ Route::prefix('admin')->group(function (){
     Route::get('/statuscategory',[adminCategory::class,'status'])->name('admin.category.status');
     Route::match(['post','get'],'/login',[AuthController::class,'login'])->name('admin.login');
     Route::match(['post','get'],'/register',[AuthController::class,'register'])->name('admin.register');
-
+    Route::resource('/aboutpage',AboutPageController::class);
+    Route::get('/statusabout',[AboutPageController::class,'status'])->name('admin.about.status');
+    Route::get('/statucontact',[ContactPageController::class,'status'])->name('admin.contact.status');
+    Route::resource('/contact_pages',ContactPageController::class);
 
 });
