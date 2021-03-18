@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9659b44d2b6db904fa3715957bee1978",
+    "content-hash": "ce513b5182513caa7e08021935ab47b1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1379,6 +1379,52 @@
                 }
             ],
             "time": "2021-01-18T20:58:21+00:00"
+        },
+        {
+            "name": "mattkingshott/axiom",
+            "version": "v3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mattkingshott/axiom.git",
+                "reference": "6a89932cca8c4795c6e7a1d76d74a57e3c32bb78"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mattkingshott/axiom/zipball/6a89932cca8c4795c6e7a1d76d74a57e3c32bb78",
+                "reference": "6a89932cca8c4795c6e7a1d76d74a57e3c32bb78",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Axiom\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A package that provides a library of reusable Laravel validation rules.",
+            "homepage": "https://github.com/mattkingshott/axiom",
+            "keywords": [
+                "axiom",
+                "laravel",
+                "php",
+                "rules",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/mattkingshott/axiom/issues",
+                "source": "https://github.com/mattkingshott/axiom/tree/v3.2.0"
+            },
+            "time": "2020-12-06T14:00:16+00:00"
         },
         {
             "name": "monolog/monolog",
